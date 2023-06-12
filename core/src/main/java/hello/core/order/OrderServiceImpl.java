@@ -1,17 +1,25 @@
 package hello.core.order;
 
 import hello.core.discount.DiscountPolicy;
-import hello.core.discount.FixDiscuntPolicy;
-import hello.core.discount.RateDiscountPolicy;
+//import hello.core.discount.FixDiscuntPolicy;
+//import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
-import hello.core.member.MemoryMemberRepository;
+//import hello.core.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService {
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
     //private final DiscountPolicy discountPolicy = new FixDiscuntPolicy();
     //private final DiscountPolicy discountPolicy = new RateDiscountPolicy(); //인터페이스와 추상클래스 모두 의존해서 DIP 위반
-    private DiscountPolicy discountPolicy; // 인터페이스에만 의존하게 변경 -> nullPointException 터짐
+    private final DiscountPolicy discountPolicy; // 인터페이스에만 의존하게 변경 -> nullPointException 터짐
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+
+//    public OrderServiceImpl(MemoryMemberRepository memoryMemberRepository, FixDiscuntPolicy fixDiscuntPolicy) {
+//    }
     // 이 문제를 해결하려면 누군가가 클라이언트인 OrderServiceImpl에 DiscountPolicy의 구현 객체를 대신 생성하고 주입해주어야 한다.
 
     @Override
