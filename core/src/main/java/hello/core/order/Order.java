@@ -13,9 +13,8 @@ public class Order {
         this.discountPrice = discountPrice;
     }
 
-    public int calculatePrice() {
-        return itemPrice - discountPrice;
-
+    public int calculatePrice(){
+        return itemPrice-discountPrice;
     }
 
     public Long getMemberId() {
@@ -58,5 +57,6 @@ public class Order {
                 ", itemPrice=" + itemPrice +
                 ", discountPrice=" + discountPrice +
                 '}';
+
     }
 }
