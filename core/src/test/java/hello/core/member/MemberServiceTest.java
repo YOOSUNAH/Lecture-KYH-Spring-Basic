@@ -6,8 +6,13 @@ import org.junit.jupiter.api.Test;
 
 public class MemberServiceTest {
 
-    MemberService memberService = new MemberServiceImpl();
-
+    MemberService memberService;
+    
+    @BeforeEach
+    public void beforeEach(){
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+    }
     @Test
     void join(){
         //given  ~이런게 주웠을 때
